@@ -1,6 +1,6 @@
 use super::objects::Command;
 
-use super::super::color::red;
+use super::super::utils::color::red;
 
 
 pub const COMMAND_ONE: Command = Command {

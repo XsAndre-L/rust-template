@@ -1,12 +1,10 @@
 use std::io::{self, Write};
 
-// use crate::color::Tred;
-// use crate::color::Tgreen;
 
-use crate::color::{red, green, yellow, cyan};
+mod utils;
+use utils::{color::{green, yellow,cyan}, get_command, execute_command};
 
 mod entity;
-mod color;
 mod commands;
 
 // Entry point of the program
@@ -20,44 +18,11 @@ fn main() {
     while run {
         // println!("Previouse Command, {}",previouse_command);
         let command: String = get_command();
-        execute_command(&command, &mut run);
+        execute_command(&command, &mut run, commands::MAIN_COMMANDS);
         previouse_command = command;
     }
 }
 
-fn get_command () -> String {
-    let mut command = String::new();
-    io::stdin().read_line(&mut command).expect("> ");
-    command
-}
-
-fn execute_command(command: &str, run: &mut bool) {
-    let cmd_str = command.trim();
-
-    if cmd_str == "exit" {
-        color::red("Exiting Program");
-        *run = false;
-        return;
-    }
-
-    if cmd_str == "help" {
-        commands::help_command();
-        return;
-    }
-
-    let cmd = commands::find_command(cmd_str);
-    cmd.map(|cmd| (cmd.action)());
-
-
-
-    // if cmd_str == "load" {
-    //     color::green("Loading");
-    //     loading_bar();
-    //     reset_line();
-    // }
-
-
-}
 
 fn loading_bar() {
     print!("\x1b[1;32m[");

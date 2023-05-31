@@ -1,6 +1,3 @@
-use std::mem::replace;
-
-
 
 pub fn red(text: &str) -> String {
   attach_color(text, "\x1b[1;31m")

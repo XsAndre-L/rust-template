@@ -1,3 +1,3 @@
-mod command_object;
+pub mod command_object;
 pub use command_object::Command;
 
